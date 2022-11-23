@@ -3,15 +3,13 @@ import React, {useState} from 'react'
 import { urlFor } from '../sanity'
 import { MinusCircleIcon, PlusCircleIcon } from 'react-native-heroicons/outline'
 import { useDispatch, useSelector } from 'react-redux'
-import { addToBasket, selecBasketItemsWithId, selectBasketItems } from '../features/basketSlice'
-import BasketIcon from "./BasketIcon";
+import { addToBasket, selecBasketItemsWithId } from '../features/basketSlice'
 
 const DishRow = ({ id, name, description, price, image }) => {
 
 
     const [ispressed, setIspressed] = useState(false);
     const items = useSelector((state) => selecBasketItemsWithId(state, id));
-    const itemsTotal = useSelector((state) => selectBasketItems);
     const dispatch = useDispatch();
 
     const addItemToBasket = () => {
@@ -25,7 +23,6 @@ const DishRow = ({ id, name, description, price, image }) => {
 
     return (
         <>
-            {!itemsTotal.length && <BasketIcon/>}
             <TouchableOpacity onPress={() => {setIspressed(!ispressed)}} 
             className={`bg-white border p-4 border-gray-200 ${ispressed && "border-b-0"}`}>
                 <View className="flex-row">
